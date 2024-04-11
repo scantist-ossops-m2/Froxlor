@@ -260,7 +260,7 @@ class Validate
 	}
 
 	/**
-	 * Returns if an emailaddress is in correct format or not
+	 * Returns if an email-address is in correct format or not
 	 *
 	 * @param string $email The email address to check
 	 *
@@ -333,5 +333,41 @@ class Validate
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * validates whether a given base64 string decodes to an image
+	 *
+	 * @param string $base64string
+	 * @return bool
+	 * @throws Exception
+	 */
+	public static function validateBase64Image(string $base64string) {
+
+		if (!extension_loaded('gd')) {
+			Response::standardError('phpgdextensionnotavailable', null, true);
+		}
+
+		// Decode the base64 string
+		$data = base64_decode($base64string);
+
+		// Create an image from the decoded data
+		$image = @imagecreatefromstring($data);
+
+		// Check if the image was created successfully
+		if (!$image) {
+			return false;
+		}
+
+		// Get the MIME type of the image
+		$mime = image_type_to_mime_type(getimagesizefromstring($data)[2]);
+
+		// Check if the MIME type is a valid image MIME type
+		if (strpos($mime, 'image/') !== 0) {
+			return false;
+		}
+
+		// If everything is okay, return true
+		return true;
 	}
 }
