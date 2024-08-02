@@ -995,6 +995,7 @@ return [
 		'domaincannotbeedited' => 'You are not permitted to edit the domain %s',
 		'invalidcronjobintervalvalue' => 'Cronjob interval must be one of: %s',
 		'phpgdextensionnotavailable' => 'The PHP GD extension is not available. Unable to validate image-data',
+		'2fa_wrongcode' => 'The code entered is not valid',
 	],
 	'extras' => [
 		'description' => 'Here you can add some extras, for example directory protection.<br />The system will need some time to apply the new settings after every change.',
@@ -2196,6 +2197,14 @@ Yours sincerely, your administrator',
 			'goaccess' => 'goacccess'
 		],
 		'requires_reconfiguration' => 'Changing this settings might require a reconfiguration of the following services:<br><strong>%s</strong>',
+		'req_limit_per_interval' => [
+			'title' => 'Number of HTTP requests per interval',
+			'description' => 'Limit the number of HTTP requests per interval (see below) to froxlor, default is "60"',
+		],
+		'req_limit_interval' => [
+			'title' => 'Rate-limit interval',
+			'description' => 'Zeit in Sekunden für die maximale Anzahl von HTTP-Anfragen, Standard ist "60".',
+		],
 	],
 	'spf' => [
 		'use_spf' => 'Activate SPF for domains?',
